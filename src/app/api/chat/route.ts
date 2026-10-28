@@ -26,10 +26,15 @@ export async function POST(request: Request) {
     }
     const result = await runMockAgent(message);
     return NextResponse.json(result);
-  } catch {
-    return NextResponse.json(
-      { error: "Invalid request or unexpected server error." },
-      { status: 400 },
+  } catch (error) {
+    console.error("CHAT API ERROR:", error);
+
+    return Response.json(
+      {
+        error: "Chat request failed",
+        details: error instanceof Error ? error.message : String(error),
+      },
+      { status: 500 },
     );
   }
 }
