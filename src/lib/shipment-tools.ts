@@ -1,6 +1,21 @@
 import { prisma } from "./prisma";
 import type { Shipment } from "@/lib/shipments";
 
+const diagnostics = await prisma.$queryRaw<
+  Array<{
+    database: string;
+    schema: string;
+    shipments_table: string | null;
+  }>
+>`
+  SELECT
+    current_database() AS database,
+    current_schema() AS schema,
+    to_regclass('public.shipments')::text AS shipments_table
+`;
+
+console.log("DATABASE DIAGNOSTICS:", diagnostics);
+
 function toShipment(record: {
   id: string;
   orderId: string;
