@@ -1,4 +1,4 @@
-import prisma from "./prisma";
+import { prisma } from "./prisma";
 import type { Shipment } from "@/lib/shipments";
 
 function toShipment(record: {
