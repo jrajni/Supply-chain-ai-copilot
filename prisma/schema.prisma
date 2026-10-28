@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ShipmentStatus{
+  IN_TRANSIT
+  DELIVERED
+  DELAYED
+}
+
+model Shipment{
+  id String @id
+  orderId String
+  destination String
+  carrier String
+  status ShipmentStatus
+  expectedDelivery DateTime @db.Date
+  delayDays Int @default(0)
+  reason           String? 
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  @@index([status])
+  @@index([destination])
+  @@map("shipments")
+}
