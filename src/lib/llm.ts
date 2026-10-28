@@ -2,7 +2,7 @@ import Groq from "groq-sdk";
 import type { KnowledgeChunk } from "@/lib/knowledge-base";
 
 const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY!,
+  apiKey: process.env.SupplyChain_GROQ_API_KEY!,
 });
 
 export async function generateRagAnswer(
@@ -15,7 +15,7 @@ export async function generateRagAnswer(
   const context = knowledgeChunks.map((chunk) => chunk.content).join("\n\n");
 
   const response = await groq.chat.completions.create({
-    model: process.env.GROQ_MODEL || "openai/gpt-oss-20b",
+    model: process.env.SupplyChain_GROQ_MODEL || "openai/gpt-oss-20b",
     temperature: 0.2,
     max_tokens: 500,
     messages: [
