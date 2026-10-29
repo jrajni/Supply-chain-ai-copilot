@@ -168,9 +168,6 @@ export default function Home() {
               Explore shipments using conversational queries.
             </p>
           </div>
-          <span className="rounded-full border border-amber-800 bg-amber-950 px-3 py-1 text-xs text-amber-300">
-            Demo · Mock AI
-          </span>
         </header>
 
         <section
