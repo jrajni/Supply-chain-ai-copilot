@@ -281,10 +281,6 @@ export default function Home() {
               {loading ? "Checking..." : "Ask"}
             </button>
           </div>
-          <p className="mt-2 text-xs text-slate-500">
-            Uses fictional sample records. No live operational data or LLM is
-            connected.
-          </p>
         </form>
       </div>
     </main>
